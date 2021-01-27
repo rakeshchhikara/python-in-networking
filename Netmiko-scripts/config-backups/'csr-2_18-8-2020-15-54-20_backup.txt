@@ -1,0 +1,201 @@
+Building configuration...
+
+Current configuration : 4176 bytes
+!
+! Last configuration change at 16:53:41 UTC Sun Aug 16 2020 by admin
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname csr-2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+ip vrf Mgmt-intf
+ rd 100:100
+!
+!
+!
+!
+!
+!
+!
+ip domain name Cisco123.com
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-308375703
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-308375703
+ revocation-check none
+ rsakeypair TP-self-signed-308375703
+!
+!
+crypto pki certificate chain TP-self-signed-308375703
+ certificate self-signed 01
+  3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33303833 37353730 33301E17 0D323030 34313930 35353135 
+  315A170D 33303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3330 38333735 
+  37303330 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 
+  82010100 ACB0EA06 A18D8C68 B5F85B90 33E09244 373E9C8E 8AB92550 573BD786 
+  8CD3B15D 559D41AB 3DC0A018 8E0E9A2A ACC8EB3A 1B208867 E54429B6 245EE694 
+  6659C4AA FD01929D 6B30813C 431CD420 2CA796AA C203B68F 6BBC476F 5DC38CBE 
+  BCE464DD 70362DE2 838D1D0B D8549667 BD974D1C AF130844 BAEEC53E B0EFD056 
+  BD91D1E0 5E2298B5 11825055 3A3AD0F2 4B57F9B1 4D17E0ED BC6EFE69 B8741B69 
+  699BB3FA 804C83EB 11B75CEB 51A75DFD F32FFACB F2A12C0B D3BE3F2C D629028C 
+  4009F5EC 12CFC5C7 EAAFA74F F42113CA 27E55277 E19E7145 BC793BEB 1A5582F7 
+  F46D3B4A CA41B691 631DFD06 ED5BEEEC 43AF4EC6 913E7DBA 7B7C678C B30E3259 
+  EAC9D24B 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 
+  0603551D 23041830 1680146A CB7D5179 669CAD32 31BFA295 8E75C10B B781CB30 
+  1D060355 1D0E0416 04146ACB 7D517966 9CAD3231 BFA2958E 75C10BB7 81CB300D 
+  06092A86 4886F70D 01010505 00038201 01004C8E DEE4D518 D4220F50 654A6B5A 
+  201014D5 A2B41FD5 8597781C 884F700B E1A11D36 2A80021D D9B46B46 6907E737 
+  C0F4FF5F BEED6C50 88560364 5750773D CC76BE11 2EB4D383 D171745E 13B85AF9 
+  595662CB E142ADC9 21164148 DA0112D7 7EBD0A5D A6FD999E 2E7424EC 73C9F5DD 
+  B9DCB56F 921D06F5 A550B587 7B668517 6A5150D6 E12B867E A1B2E07F DFF161E6 
+  FF78E76B 60E03DCA A26118D1 FB791920 CA4FA272 F1768781 F9472B70 C5E5840F 
+  A1D2E3BC A0604F2E 86BEA2FA F5277F16 6178407D 2A6DAF45 A032B154 4C41A47E 
+  27C52F18 F9D47AA7 7F4F6917 5D8048DD 87028097 55A3135B DAA1AFA5 399388BF 
+  C0DBBB28 BA7A713D B8D152F4 96D0E575 E45F
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 988X4ZLT2AN
+license boot level ax
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+!
+!
+username admin privilege 15 secret 5 $1$lG3h$Xgz/OF5xUOEJ.OGqsgl251
+!
+redundancy
+!
+!
+!
+!
+!
+!
+pseudowire-class blr-syd
+ encapsulation l2tpv3
+ ip local interface GigabitEthernet1
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback10
+ ip address 99.2.1.10 255.255.255.255
+!
+interface Loopback11
+ ip address 99.2.1.11 255.255.255.255
+!
+interface Loopback12
+ ip address 99.2.1.12 255.255.255.255
+!
+interface GigabitEthernet1
+ ip vrf forwarding Mgmt-intf
+ ip address 192.168.200.3 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description Network:SD-WAN-555 - Connected to PE5 G2
+ no ip address
+ negotiation auto
+ no keepalive
+ no mop enabled
+ no mop sysid
+ xconnect 10.127.244.9 12 encapsulation l2tpv3 pw-class blr-syd
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.66.76.65
+ip route 10.65.84.85 255.255.255.255 10.66.76.65
+ip route 10.127.244.12 255.255.255.255 10.66.76.65
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 192.168.200.1
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ logging synchronous
+ login local
+line vty 5 15
+ exec-timeout 15 0
+ logging synchronous
+ login local
+!
+!
+!
+!
+!
+!
+end

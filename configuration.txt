@@ -1,0 +1,4 @@
+hostname R1
+loopback 1
+ip address 1.1.1.1 255.255.255.255
+router bgp 100

@@ -1,0 +1,225 @@
+Building configuration...
+
+Current configuration : 4463 bytes
+!
+! Last configuration change at 16:53:23 UTC Sun Aug 16 2020 by admin
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname csr-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Corp-VPN
+ rd 100:10
+ !
+ address-family ipv4
+ exit-address-family
+!
+!
+no aaa new-model
+!
+ip vrf Mgmt-intf
+ rd 100:100
+!
+!
+!
+!
+!
+!
+!
+ip domain name net-auto.io
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1655553358
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1655553358
+ revocation-check none
+ rsakeypair TP-self-signed-1655553358
+!
+!
+crypto pki certificate chain TP-self-signed-1655553358
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31363535 35353333 3538301E 170D3230 30353131 31323334 
+  30395A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 36353535 
+  35333335 38308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100C83B 866AC950 5B217702 ECEA2B39 CA3470E7 485606D1 80D2D4A2 
+  A8183F2E 5A3D4A17 2F1D6950 607B7EB9 51F11DDB 2810097D E16942DF 8870775E 
+  3A9E089B 3F95F0DC 068E6931 E9884B55 8DDA7E48 34BBB212 F7A1CE50 DBC4BCF9 
+  9489F3D1 AA18D2E0 57E1BCF6 E28EAF2E 20889DE9 98CEA2BC D6D9360F AD773412 
+  31F3B175 5972BD16 50239393 C7181417 27F349D6 96AE232A 8EF26C62 46FE1E80 
+  D7E0E1FE EDE5BC29 6802BA8C 9BAC07B7 C6B46DAC 88925AFC A53AFD02 91A23C3F 
+  B7628AF2 42F5689B BF5352B9 904682EF 7208A164 2A23A96F 92EBA401 28F5E800 
+  425B7AFC BFD9269A BC9D8C6B 314CD578 DE06D87F 8282EC59 F645FDEB 14214467 
+  20810A61 2CEB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14E6655D 51A2FB71 199EA839 FB9A58A2 634CE873 
+  93301D06 03551D0E 04160414 E6655D51 A2FB7119 9EA839FB 9A58A263 4CE87393 
+  300D0609 2A864886 F70D0101 05050003 82010100 35620096 C574E232 D724B48F 
+  EA39344F EA7DE295 81F181BD 293FA923 082B060B BF2FCFBE 1D1FA06A B4E8DEB5 
+  6BBFCF9E 93EDB60B 7266F25F 196E0486 22F33DA7 681A85E4 2555253D 51739FF0 
+  08B40C51 1B3F67F8 D211D563 91733CD9 6D46C875 33C779CD C42CE4BB 85DCBAAB 
+  87D4C6C4 5596BA9A 87A3A1BF 96614B64 DF561408 723AC064 16FE3402 CB935205 
+  517969AA C90FE8F0 4D0E8062 459E1105 47D72BC3 D6844C4C 38AC3A38 39F1EC47 
+  515C09A4 ADA9D951 6C9963CD 1003F3F2 6CEE2DCA 0F2963C0 69F25357 8EDAB2AF 
+  53E7F3EA C065E508 131AEA30 040B428C 07A71BAE 98056961 BC06F282 C0290452 
+  984B69BE 5958C01E D92321F0 14F10CE3 DF1E8174
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 96DY0K49WZY
+license boot level ax
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+!
+!
+username admin privilege 15 secret 5 $1$JMN9$ozGAe6Bi8sZ14C89sSbUc/
+username u3 secret 5 $1$7IpL$XAjYRP1UVqe1Nq3B1/b7q0
+username netmiko secret 5 $1$bO1H$tBLlka/Wz1Ygsx.0GoM6t0
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+!
+interface Loopback10
+ ip address 99.1.1.10 255.255.255.255
+!
+interface Loopback11
+ ip address 99.1.1.11 255.255.255.255
+!
+interface Loopback12
+ ip address 99.1.1.12 255.255.255.255
+!
+interface GigabitEthernet1
+ description Mgmt
+ ip vrf forwarding Mgmt-intf
+ ip address 192.168.200.2 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet3
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet5
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route vrf Corp-VPN 0.0.0.0 0.0.0.0 10.104.10.1
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 192.168.200.1
+!
+ip ssh version 2
+!
+access-list 1 permit any
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ logging synchronous
+ login local
+line vty 5 15
+ exec-timeout 15 0
+ logging synchronous
+ login local
+!
+!
+!
+!
+!
+!
+end

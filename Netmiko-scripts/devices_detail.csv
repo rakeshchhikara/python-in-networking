@@ -1,0 +1,4 @@
+device_type,host,username,password,port,secret,verbose
+cisco_ios,10.66.76.74,admin,c1sc0,2202,c1sc0,TRUE
+cisco_ios,10.66.76.74,admin,c1sc0,2203,c1sc0,TRUE
+cisco_ios,10.66.76.74,admin,c1sc0,2204,c1sc0,TRUE
